@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Ingredient } from "../shared/ingredient.model"
 import { ShoppingListService } from './shopping-list.service';
 import { Subscription } from 'rxjs';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-
 
 @Component({
   selector: 'app-shopping-list',
@@ -17,6 +15,10 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy(){
 		this.subscription.unsubscribe();
+	}
+
+	onEditItem(index: number) {
+		this.slService.startedEditing.next(index);
 	}
 
   ngOnInit() {
